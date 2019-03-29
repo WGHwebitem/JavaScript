@@ -1,0 +1,73 @@
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.xinxin{position: relative;}
+			.xinxin:after{
+				content: '★★★★★';
+				overflow: hidden;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 0em;
+				color:blue;
+				transition: width 2s;
+				-webkit-transition: width 2s;
+				-moz-transition: width 2s;
+				-moz-transition: width 2s;
+			}
+			.xinxin:hover:after{
+				width: 3.5em;
+			} 
+		</style>
+	</head>
+	<body>	
+		<div class="xinxin" style="">☆☆☆☆☆</div>
+
+		<div>
+			<img name="onk" src="image/choose.png" tlt="1" class="chooseclick" width="18px;">
+			<img name="onk" src="image/choose.png" tlt="2" class="chooseclick" width="18px;">
+			<img name="onk" src="image/choose.png" tlt="3" class="chooseclick" width="18px;">
+			<img name="onk" src="image/choose.png" tlt="4" class="chooseclick" width="18px;">
+			<img name="onk" src="image/choose.png" tlt="5" class="chooseclick" width="18px;">
+		</div>
+		
+		
+		
+	
+	
+	
+	
+		
+	</body>
+	<script type="text/javascript" src="js/jquery-1.4.1.min.js"></script>
+	<script>
+		
+		//星星的选中
+		$('.chooseclick').click(function(){
+			$('img[name=onk]').attr('src','image/choose.png');
+			
+			var indexv=parseInt($(this).attr('tlt'));
+			for(var j=0;j<=5;j++){
+				if(j<=indexv){
+					$('img[name=onk][tlt='+j+']').attr('src','image/xuanzhong.png');
+				}				
+			}			
+		})
+		
+		  $('img[name=onk]').toggle(function(){
+				$(this).attr('src','image/xuanzhong.png');
+			},function(){
+				$(this).attr('src','image/choose.png');
+			})
+		
+
+		
+		
+	</script>
+</html>

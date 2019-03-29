@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#move{width: 350px;height: 80px;background: red;position:relative;left: -340px;cursor: pointer;display: block;}
+		    #colorv{width: 350px;height: 100px;background:green;cursor: pointer;
+		    filter: alpha(opacity:100);opacity: 0.8;}
+		</style>
+	</head>
+	<body>
+		<div id="move"><a>移动</a></div><br/>
+		<div id="colorv">颜色</div>
+	</body>
+	<script>
+	window.onload=function(){
+		var idleft=document.getElementById('move');
+		idleft.onmouseover=function(){
+			moveFun(10,0);
+		}
+		idleft.onmouseout=function(){
+			moveFun(-10,-340);
+		}
+		var colordiv=document.getElementById('colorv');
+		colordiv.onmouseover=function(){
+			movecolor(30);
+		}
+		colordiv.onmouseout=function(){
+			movecolor(100);
+		}
+	}
+//滑动
+	var timer=null;
+		var moveFun=function(speed,itarget){
+			clearInterval(timer);
+			var idleft=document.getElementById('move');
+			timer = setInterval(function(){
+				if(idleft.offsetLeft==itarget){
+					clearInterval(timer);
+				}else{
+					idleft.style.left=idleft.offsetLeft+speed+'px';
+				}
+				
+			},30)
+		}
+		
+		
+//颜色渐变		
+var timerC=null;
+var alpha=100;
+var movecolor=function(itergetv){
+	clearInterval(timerC);
+			var colordiv=document.getElementById('colorv');
+			timerC = setInterval(function(){
+				var speed=0; 
+				if(alpha>itergetv){
+					speed=-10;
+				}else{
+					speed=10;
+				}
+				if(alpha==itergetv){
+					clearInterval(timerC);
+				}else{
+					alpha+=speed;
+					colordiv.style.filter='alpha(opactiy:'+alpha+')';//基于iE
+					//火狐或谷歌
+					colordiv.style.opacity=alpha/100;
+				}
+				
+			},30)
+}
+	</script>
+</html>

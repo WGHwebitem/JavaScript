@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="css/comme.css"  title="默认"/>
+		<link type="text/css" rel="alternate stylesheet" href="css/blue.css" title="蓝色"/>
+		<link type="text/css" rel="alternate stylesheet" href="css/red.css" title="红色"/>
+		<style>
+			.main{width: 200px;height: 100px;line-height:100px;text-align: center;color:#FFF;}
+		</style>
+	</head>
+	<body>
+		<div id="mfu" class="main">换肤</div>
+		<div>
+			<input id="default"  type="radio" value="css/comme.css" name="skin" checked="checked" /><label for="default">默认</label>
+			<input id="red" type="radio" value="css/red.css" name="skin" /><label for="red">红色</label>
+			<input id="blue" type="radio" value="css/blue.css" name="skin" /><label for="blue">蓝色</label>
+		</div>
+	</body>
+	<script>
+		//获取文档中的名link[title]的所有属性
+		//选择用link来改变换肤：优点：
+//		1、兼容性非常好。IE9+（IE8我没测，理论也支持），Chrome和Firefox均支持这种更原生的换肤效果实现。
+//		2、语义非常好。用户，开发者，尤其搜索引擎或者其他辅助阅读设备能够准确识别网站还有其他替换CSS样式。（alternate的语义就是可替换的）
+//		3、交互体验更好。rel=alternate方法实现的换肤功能在网站样式变换的时候是瞬间切换，完全无感知。
+//      因为浏览器已经把换肤的CSS文件预加载好了，比JS改变href地址的体验要更好。配合http2.0，几乎可以说是完美无瑕的解决方案了。
+		var eleLinks = document.querySelectorAll('link[title]');
+		var eleRadios = document.querySelectorAll('input[type="radio"]');
+		[].slice.call(eleRadios).forEach(function (radio) {
+		    radio.addEventListener('click', function () {
+		        var value = this.value;
+		        [].slice.call(eleLinks).forEach(function (link) {
+		            link.disabled = true;
+		            if (link.getAttribute('href') == value) {
+		                link.disabled = false;
+		            }
+		        });
+		    });
+		});
+//		
+//		[].slice.call(eleRadios).forEach(function(radios){
+//			 radios.addEventListener('click',function(){
+//			 	var value=this.value;
+//			 	[].slice.call(eleLinks).forEach(function(linkv){
+//			 		linkv.disabled=true;
+//			 		if(linkv.getAttribute('href')==value){
+//			 			linkv.disabled=false;
+//			 		}
+//			 	})
+//			 })
+//		});
+		
+		
+		//第二种方法 不介意使用
+//		var objRadios=document.querySelectorAll('input[type="radio"]');
+//		var objfu=document.getElementById('mfu');
+//		function conmmFun(thisb){
+//			if(thisb=="red"){
+//				objfu.style.background="red";
+//			}else if(thisb=="blue"){
+//				objfu.style.background="blue";
+//			}else{
+//				objfu.style.background="green";
+//			}
+//		}
+		
+	</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{background:#18d0f0;}
+			.strok{position: absolute;z-index: 3;left: 50%;bottom:50px; }
+			.strok ul{padding:0;margin: 0;list-style: none;}
+			.strok ul li{position: absolute; bottom:50px;left: 50%; height: 0;width: 0px;border:35px solid #FFF;
+			border-radius: 35px;opacity:0;transform: scale(0.2); text-align: center;}
+			@keyframes strokL{
+				0%{transform: scale(0.2) translate(0,0);}
+				10%{transform: scale(0.4) translate(0,-5px);opacity: 1;}
+				30%{transform: scale(0.6) translate(20,-15px);opacity: 1;}
+				50%{transform: scale(0.7) translate(50,-25px);opacity: 0.8;}
+				70%{transform: scale(0.9) translate(100,-45px);opacity: 0.6;}
+				100%{transform: scale(1) translate(-550px,-550px);opacity: 0;}
+			}
+			@keyframes strokR{
+				0%{transform: scale(0.2) translate(0,0);}
+				10%{transform: scale(0.4) translate(0,-5px);opacity: 1;}
+				30%{transform: scale(0.6) translate(20,-15px);opacity: 1;}
+				50%{transform: scale(0.7) translate(50,-25px);opacity: 0.8;}
+				70%{transform: scale(0.9) translate(100,-45px);opacity: 0.6;}
+				100%{transform: scale(1) translate(200px,-550px);opacity: 0;}
+			}
+			.strokli1{animation:strokL  0s infinite;}
+			.strokli2{animation:strokR  2s infinite;}
+			.strokli3{animation:strokL  3s infinite;}
+			.strokli4{animation:strokR  4s infinite;}
+			.strokli5{animation:strokL  5s infinite;}
+			.strokli6{animation:strokR  6s infinite;}
+			.strokli7{animation:strokL  7s infinite;}
+			.strokli8{animation:strokR  8s infinite;}
+			.strokli9{animation:strokL  9s infinite;}
+			.strokli10{animation:strokL 10s infinite;}
+		</style>
+	</head>
+	<body>
+		<div class="strok">
+			<ul>
+				<li class="strokli1"></li>
+				<li class="strokli2"></li>
+				<li class="strokli3"></li>
+				<li class="strokli4"></li>
+				<li class="strokli5"></li>
+				<li class="strokli6"></li>
+				<li class="strokli7"></li>
+				<li class="strokli8"></li>
+				<li class="strokli9"></li>
+				<li class="strokli10"></li>
+			</ul>
+		</div>
+	</body>
+</html>

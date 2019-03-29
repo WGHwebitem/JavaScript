@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.main{
+				width: 300px;
+				height: 300px;
+				margin: auto;
+				}
+			.box{
+				width: 300px;
+				height: 300px;
+				border-bottom: 1px dashed #ccc;
+				text-align: justify;
+				}
+			.box:before{
+				content: '';
+				display: inline-block;
+				height: 100%;
+			}
+			.box:after{
+				content: '';
+				display: inline-block;
+				width: 100%;
+			}
+			.bar{display: inline-block;width: 20px;height: 0;}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<div id="box" class="box"><i class="bar"></i>
+				<i class="bar"></i>
+				<i class="bar"></i>
+				<i class="bar"></i>
+			</div>
+			<p><button id="bt">在加一条数据</button></p>
+		</div>
+	</body>
+<script>
+	//querySelector()方法返回文档中匹配指定 CSS 选择器的一个元素。	
+if(document.querySelector){
+	var elBox=document.getElementById('box');
+	//目前柱子元素和个数
+	var elBars=document.querySelectorAll('#box > i');
+	var lenBar=elBars.length;
+	if(elBox && lenBar){
+		for(var i=0;i<lenBar;i++){
+			/*柱形图的柱子高度和背景色随机
+			ceil() 方法执行的是向上取整计算，它返回的是大于或等于函数参数，并且与之最接近的整数
+			arrayObject.slice(start,end)start	
+			必需。规定从何处开始选取。如果是负数，那么它规定从数组尾部开始算起的位置。也就是说，
+			-1 指最后一个元素，-2 指倒数第二个元素，以此类推。*/
+			elBars[i].style.height=Math.ceil(300 * Math.random())+'px';
+			elBars[i].style.backgroundColor='#'+(Math.random()+'').slice(-6);
+		}
+	}
+}
+//增加数据
+var elbtn=document.getElementById('bt');
+if(elbtn && lenBar){
+	elbtn.onclick=function(){
+		//随机高度和背景色
+		var height=Math.ceil(300*Math.random())+'px';
+		var backgroundcolor='#'+(Math.random()+'').slice(-6);
+		//创建柱子元素
+		//cloneNode克隆的节点
+		var eleClone=elBars[0].cloneNode();
+		eleClone.style.height=height;
+		eleClone.style.background=backgroundcolor;
+		// 此处的字符替换为了兼容IE8下的演示效果
+		//innerHTML:从对象的起始位置到终止位置的全部内容,不包括Html标签。
+		//outerHTML:除了包含innerHTML的全部内容外, 还包含对象标签本身。
+		 elBox.innerHTML=elBox.innerHTML.replace(/I><I/ig,'I> <I')+' '+eleClone.outerHTML;
+		 lenBar+=1;
+		 //最多10条数据setAttribute() 方法添加指定的属性，并为其赋指定的值
+		 if(lenBar==12){
+		 	this.setAttribute('disabled', 'disabled');
+		 }
+	}
+}
+</script>	
+</html>

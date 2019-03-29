@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="tv">Txt Shadow</div>
+	</body>
+<script>
+	 var fruitColor = {
+	    red: ['apple', 'strawberry'],
+	    yellow: ['banana', 'pineapple'],
+	    purple: ['grape', 'plum']
+	 };
+	function test(color) {
+	  return fruitColor[color] || [];
+	}
+	var t=test('red');
+	var obj=document.getElementById('tv');
+	obj.innerHTML=test('red');
+</script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#zxxRemind{color:#A2A9B6;font-size: 12px;}
+		</style>
+	</head>
+	<body>
+		<input id="zxxPwdTest" type="text" />&nbsp;<span id="zxxRemind">例如123</span><br />
+		<button id="zxxSureBtn">确定</button>
+	</body>
+	<script type="text/javascript" src="js/jquery-1.4.1.min.js" ></script>
+		<script type="text/javascript">
+			// \w匹配字母或数字或下划线或汉字 等价于 '[^A-Za-z0-9_]
+		//1、纯jq版
+		var obj = {
+			pwd: $("#zxxPwdTest"),
+			btn: $("#zxxSureBtn"),
+			rem: $("#zxxRemind"),
+			reg: /^\w{6,20}$/
+		};
+		obj.btn.click(function(){
+			//正则判断
+			if(!obj.reg.test(obj.pwd.val())){
+				obj.rem.css("color", "#ff3300").html("密码不正确");
+				obj.pwd.focus().select();
+			}else{
+				obj.rem.css("color", "#999999").html("请输入错误密码便于测试");
+			}
+			return false;
+		});
+		
+		
+		//2、纯js版
+//	var obj = {
+//	pwd: document.getElementById("zxxPwdTest"),
+//	btn: document.getElementById("zxxSureBtn"),
+//	rem: document.getElementById("zxxRemind"),
+//	reg: /^\w{6,20}$/
+//	};
+//	obj.btn.onclick = function(){
+//		//正则判断
+//		if(!obj.reg.test(obj.pwd.value)){
+//			obj.rem.style.color = "#ff3300";
+//			obj.rem.innerHTML = "密码不正确";
+//			obj.pwd.focus();
+//			obj.pwd.select();
+//		}else{
+//			obj.rem.style.color = "#999999";
+//			obj.rem.innerHTML = "请输入错误密码便于测试";
+//		}
+//		return false;
+//	}
+</script>
+</html>

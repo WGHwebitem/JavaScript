@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{background: #300; background-image: radial-gradient(circle,#633,#000);z-index: 0;}
+			.firpart{ width: 50px;height: 150px; background: #ffc;position: absolute;left:48.5%;
+			 border-radius: 50%;border-bottom-left-radius: 50% 30%;border-bottom-right-radius: 50% 30%;
+			 bottom:50%;box-shadow: 0 -20px 5px 5px #FFF;transform-origin: bottom center;z-index: 1;
+			 transform:all 1s ease-out-bounce;overflow: hidden; margin-left: 0 0 0 -25px;
+			 animation: flicher 2s infinite ease-out alternate; }
+			.firpart:before{
+				background: #f90;width: 30px; height: 120px;border-radius: 50%;border-bottom-left-radius: 50% 30%;border-bottom-right-radius: 50% 30%;
+			position: absolute;bottom:0;opacity: .2; left:50%; z-index: 1;margin: -50px 0 0 -15px; content: "";box-shadow: 0 10px 5px 5px #FFF inset;
+			animation: flicher 3s infinite ease-out alternate;
+			}
+			.firpart:after{border-radius: 50%; bottom:0;box-shadow: 0 -20px 20px 20px #FFC inset;content: "";left: 0;position: absolute;right: 0;top: -20px;z-index: 0;
+			animation: flicher 3s infinite ease-out alternate;}
+			@keyframes  flicher{
+				0%{ transform: scale(1);}
+				20%{transform: scale(1.1,0.9) rotate(3deg);}
+				50%{transform: scale(1,1.2);}
+				80%{transform: scale(0.9,1.1) rotate(-3deg);}
+				100%{transform: scale(1);}
+			}
+			.firstin{
+				width: 80px; height: 260px;position: absolute;left:50%;top:50%;background: #CCC;box-shadow: 0 -50px 50px 0 #999 inset;
+				margin-left: -40px;border-radius: 0 0 40px 40px/0 0 16px 16px;/*斜杠前面的是水平圆角大小，斜杠后面4个值是垂直圆角大小*/
+			}
+			.firstin:before{
+				background-color:#FFF;content: "";border-radius: 50%;box-shadow: 0 2px 2px 2px #ccc inset;height: 10px;left:0;position: absolute;right: 0;top:-5px;
+			}
+			.firstin:after{
+				background: #333;border-top-left-radius: 30% 50%;border-top-right-radius: 30% 50%;box-shadow: 0 0 2px 2px #333;content: "";height:50px;left:50%;margin-left: -3px;opacity: .5;
+				position: absolute;top:-50px;transform: rotate(-3deg);width: 5px;z-index: 1;
+			}
+		</style>
+		<script>
+			function randomClass() {
+			  var classes = ['up', 'right', 'bottom', 'left'],
+			    index = Math.floor(Math.random() * classes.length);
+			  return classes[index];
+			}
+			
+			function changePerspective() {
+			  var tiles = document.querySelectorAll('.tile');
+			  for (var i = 0; i < tiles.length; i++) {
+			    tiles[i].className = 'tile ' + randomClass();
+			  }
+			}
+			
+			setInterval(changePerspective, 1000);
+		</script>
+	</head>
+	<body>
+		<div class="firpart"></div>
+		<div class="firstin"></div>
+	</body>
+</html>
