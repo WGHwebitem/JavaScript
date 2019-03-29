@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    *{ margin: 0;padding: 0; list-style: none;}
+			.slideBox{width: 640px; height: 321px;position:relative;margin: 0 auto; border:5px solid #000;
+			overflow: hidden;}
+			.slideBox .img{ width: 5000px; position: absolute;left: 0;}
+			.slideBox .img li{ float: left;width: 640px; height: 321px; }
+			
+			.slideBox .hd{ position: absolute;bottom: 0; left:45%; font-size: 0px; }
+			.slideBox .hd li{ width: 15px; height: 15px; background:#888; border-radius: 50%; display: inline-block;
+			margin-left:5px;cursor: pointer;}
+			.slideBox .hd .on{ background: #D9534F;}
+			.slideBox .btn{ width: 30px; height: 50px; background: rgba(235,25,103,0.5); position:absolute; font-size: 40px;color:#FFFFFF;
+			top:45%; text-align: center; line-height: 50px; cursor: pointer; display: none;}
+			.slideBox:hover .btn{ display: block;}
+			.slideBox .prev{ left: 0;}
+			.slideBox .next{ right: 0;}
+		</style>
+	</head>
+	<body>
+		<div class="slideBox">
+			<div class="bd">
+				<ul class="img">
+					<li><a href="#"><img src="image/banner1.png"></a></li>
+					<li><a href="#"><img src="image/banner2.png"></a></li>
+					<li><a href="#"><img src="image/banner3.png"></a></li>
+				</ul>
+				<ul class="hd">
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<a class="btn prev" href="javascript:void(0)">&gt;</a>
+			    <a class="btn next" href="javascript:void(0)">&lt;</a>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="Script/jquery-1.4.1.min.js"></script>
+	<script type="text/javascript" src="Script/jquery.SuperSlide.2.1.2.js"></script>
+	<script>
+	   jQuery(".slideBox").slide({mainCell:".bd ul",autoPlay:true});	   
+	 
+	   
+	   
+	</script>
+</html>

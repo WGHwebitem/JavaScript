@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    *{ margin: 0;padding: 0; list-style: none;}
+			.banner{width: 640px; height: 321px;position:relative;margin: 0 auto; border:5px solid #000;
+			overflow: hidden;}
+			.banner .img{ width: 5000px; position: absolute;left: 0;}
+			.banner .img li{ float: left;width: 640px; height: 321px; }
+			
+			.banner .num{ position: absolute;bottom: 0; left:45%; font-size: 0px; }
+			.banner .num li{ width: 15px; height: 15px; background:#888; border-radius: 50%; display: inline-block;
+			margin-left:5px;cursor: pointer;}
+			.banner .num .on{ background: #D9534F;}
+			.banner .btn{ width: 30px; height: 50px; background: rgba(235,25,103,0.5); position:absolute; font-size: 40px;color:#FFFFFF;
+			top:45%; text-align: center; line-height: 50px; cursor: pointer; display: none;}
+			.banner:hover .btn{ display: block;}
+			.banner .btn_l{ left: 0;}
+			.banner .btn_r{ right: 0;}
+		</style>
+	</head>
+	<body>
+		<div class="banner">
+			<ul class="img">
+				<li><a href="#"><img src="image/banner1.png"></a></li>
+				<li><a href="#"><img src="image/banner2.png"></a></li>
+				<li><a href="#"><img src="image/banner3.png"></a></li>
+			</ul>
+			<ul class="num">
+			</ul>
+			<div class="btn btn_l">&gt;</div>
+			<div class="btn btn_r">&lt;</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="Script/jquery-1.4.1.min.js"></script>
+	<script>
+		$(function(){//封装
+			$('.banner .num li').first().addClass('on')
+			var clone=$('.banner .img li').first().clone();
+			$('.banner .img').append(clone);
+			var size=$('.banner .img li').size();
+			for(var j=0;j<size-1;j++){
+				$('.banner .num').append('<li></li>');	
+			}	
+			var i=0;
+			//左边按钮
+			$('.banner .btn_l').click(function(){
+				i++;
+				move();
+			})
+			//右边按钮
+			$('.banner .btn_r').click(function(){
+				i--;
+				move();
+			})
+			//小圆点
+			$('.banner .num li').hover(function(){
+				var indexv=$(this).index();
+				i=indexv;
+				$('.banner .img').animate({left:-indexv*640},500);
+				$(this).addClass('on').siblings().removeClass('on')
+			})
+			//时间定时器
+			var t=setInterval(function(){
+				i++;
+				move();
+			},2000);
+			//鼠标移入停止事件
+			$('.banner').hover(function(){
+				clearInterval(t);
+			},function(){
+				i++;
+				move();
+			})
+			
+	    
+		function move(){
+				if(i==size){
+					$('.banner .img').css({left:0});
+					i=1;
+				}
+				if(i==-1){
+					$('.banner .img').css({left:0});
+					i=size-2;
+				}
+				$('.banner .img').animate({left:-i*640},500);
+				if(i==size-1){
+					$('.banner .num li').eq(0).addClass('on').siblings().removeClass('on')
+				}else{
+					$('.banner .num li').eq(i).addClass('on').siblings().removeClass('on')
+				}			
+		}
+	});
+	</script>
+</html>

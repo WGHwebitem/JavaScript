@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0; padding: 0; list-style: none;}
+		    #banner{ width: 640px; height: 321px;margin:2px auto;border:10px solid #000000; position: relative;
+		    overflow: hidden;}
+		    #banner .colorv{ width: 5000px; position: absolute;left: 0;}
+		    #banner .colorv li{ float: left;}
+		    
+		    #banner .num{ position: absolute; width: 100%; bottom: 0;left: 0; text-align: center; font-size: 0px;}
+		    #banner .num li{ width: 15px; height: 15px; background:#888888; display: inline-block; border-radius: 50%;
+		    margin: 0 3px; cursor:pointer}
+		    #banner .num .on{ background: #F0AD4E;}
+		    
+		    #banner .btn{ position: absolute; width: 35px; height: 50px; background: rgba(235,25,103,0.5);top:40%;
+		    cursor:pointer; line-height: 50px; text-align: center; color:#FFFFFF; font-size: 40px; font-family: "宋体";
+		    display: none;}
+		    #banner:hover .btn{display: block;}
+		    #banner .btn_l{left: 0;}
+		    #banner .btn_r{right: 0;}
+		</style>
+	</head>
+	<body>
+		<div id="banner" class="banner">
+			<ul class="colorv">
+				<li><a href="#"><img src="image/banner1.png"></a></li>
+				<li><a href="#"><img src="image/banner2.png"></a></li>
+				<li><a href="#"><img src="image/banner3.png"></a></li>
+			</ul>
+			<ul class="num">
+			</ul>
+			<div class="btn btn_l">&gt;</div>
+			<div class="btn btn_r">&lt;</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="Script/jquery-1.4.1.min.js"></script>
+	<script>
+		$(function(){
+			var numv=0;
+			var clone=$('#banner .colorv li').first().clone();//克隆复制第一张图片
+			$('#banner .colorv').append(clone);
+			var sizev=$('#banner .colorv li').size();
+			for(var j=0;j<sizev-1;j++){
+			  $('#banner .num').append('<li></li>');	
+			}
+			$('#banner .num li').first().addClass('on');
+			
+			//左边的按钮
+			$('#banner .btn_l').click(function(){
+				moveL();
+			})
+			//鼠标划入圆点
+			$('#banner .num li').hover(function(){
+				var indext=$(this).index();
+				numv=indext;//与下面的对应起来 这样先执行鼠标hover事件在进行左右点击事件  这样就不会乱了
+				$('#banner .colorv').stop().animate({left:-indext*640},500)
+				$(this).addClass('on').siblings().removeClass('on');//eq()筛选
+			});
+			
+			//时间定时器
+			var tv=setInterval(moveL,2000);
+			//对鼠标移入banner图的的操作
+			("#banner").hover(function(){
+				 clearInterval(tv);
+			},function(){
+				 tv=setInterval(moveL,2000);
+			});
+			
+			
+			//右边的按钮			
+			$('#banner .btn_r').click(function(){
+				moveR();
+			})
+		
+		function moveL(){
+				numv++;//没点击一次就加加
+				if(numv==sizev){
+					//numv=0;
+					$('#banner .colorv').css({left:0});//无间缝轮播
+					numv=1;//到第二张的时候就是1了 //无间缝轮播
+				}
+				$('#banner .colorv').stop().animate({left:-numv*640},500);//为了代码的更加流畅加了个stop();
+				if(numv==sizev-1){//解决圆点对应问题
+					$('#banner .num li').eq(0).addClass('on').siblings().removeClass('on');//eq()筛选
+				}else{
+					$('#banner .num li').eq(numv).addClass('on').siblings().removeClass('on');//eq()筛选
+				}
+				
+				
+			}
+		function moveR(){
+			numv--;//没点击一次就减减
+				if(numv==-1){//本来索引是0的向右大家一次就变成了-1
+					//numv=sizev-1;//可见区域本身就占了一个1  所以总的个数减去可见的个数
+					//$('#banner .colorv').css({left:-(numv-1)*640});//无间缝轮播
+					$('#banner .colorv').css({left:0});
+					numv=sizev-2;//无间缝轮播
+				}
+				$('#banner .colorv').stop().animate({left:-numv*640},500)
+				$('#banner .num li').eq(numv).addClass('on').siblings().removeClass('on');//eq()筛选
+			
+		}
+	});
+	</script>
+</html>

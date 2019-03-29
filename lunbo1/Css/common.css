@@ -1,0 +1,7 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,from,input,a,p,texterea,button{
+	    margin:0;padding:0; font-family:"微软雅黑", sans-serif; outline:none; }
+		ol,ul,li{list-style:none; 	}
+		a{ display:block; text-decoration:none;}
+		img{ border:none; display:block;}
+		.clearfloat{ zoom:1;}/*清除浮动*/
+		.clearfloat:after{ display:block; clear:both; content:""; visibility:hidden; height:0;}/*清除浮动之后的动作*/

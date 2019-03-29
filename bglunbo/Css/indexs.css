@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* CSS Document */
+ .div1{ width:500px; height:375px; border:1px solid #000; margin:0 auto;}
+ .div2{ width:200px; height:25px; position:relative; bottom:30px; left:570px;}
+ .div2 ul{ margin:0; padding:0; list-style:none;}
+ .div2 ul li{ width:25px; height:25px; background:#000; border-radius:50%; font-weight:500px;
+  color:#FFF;float:left; margin-left:3px; text-align:center; line-height:25px;}
+
